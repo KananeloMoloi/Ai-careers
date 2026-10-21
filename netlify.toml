@@ -7,6 +7,10 @@
   NODE_VERSION = "22"
   NETLIFY = "true"
 
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["pdfkit"]
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/api/:splat"

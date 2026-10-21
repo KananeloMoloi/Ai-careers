@@ -9,7 +9,7 @@ import { Document, Packer, Paragraph, TextRun, HeadingLevel } from 'docx';
 import PDFDocument from 'pdfkit';
 
 const app = express();
-app.use(cors({ origin: process.env.CLIENT_ORIGIN || 'http://localhost:5173' }));
+app.use(cors({ origin: process.env.NETLIFY === 'true' ? true : (process.env.CLIENT_ORIGIN || 'http://localhost:5173') }));
 app.use(express.json({ limit: '100kb' }));
 const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 5 * 1024 * 1024 }, fileFilter: (_req, file, cb) => cb(file.mimetype === 'application/pdf' || file.originalname.toLowerCase().endsWith('.pdf') ? null : new Error('Only PDF CVs are supported.'), true) });
 const groq = () => new Groq({ apiKey: process.env.GROQ_API_KEY, timeout: 60000, maxRetries: 1 });
