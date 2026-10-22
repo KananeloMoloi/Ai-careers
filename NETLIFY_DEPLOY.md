@@ -18,3 +18,6 @@ Netlify Functions have execution and request-size limits. Long AI calls or large
 ## Local development
 
 Install dependencies with `npm install`, `npm install --prefix client`, and `npm install --prefix server`. Put your Groq key in `server/.env` (never commit it). Run `npm run dev`.
+
+## Build troubleshooting
+Netlify build command: `npm ci --prefix client && npm run build --prefix client`. This installs Vite and React in the client folder before running Vite. Set publish to `client/dist`.
